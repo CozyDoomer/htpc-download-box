@@ -48,6 +48,8 @@ All automated.
     - [Setup Bazarr](#setup-bazarr)
       - [Bazarr Docker container](#bazarr-docker-container)
       - [Bazarr Configuration](#bazarr-configuration)
+    - [Setup Ombi](#setup-ombi)
+    - [Setup Organizr](#setup-organizr)
   - [Manage it all from your mobile](#manage-it-all-from-your-mobile)
   - [Going Further](#going-further)
 
@@ -782,15 +784,33 @@ It's a beautiful and well-thinked app. Easy to get a look at upcoming tv shows r
 
 The free version does not allow you to add new shows. Consider switching to the paid version (6\$) and support the developer.
 
+### Setup Ombi
+
+Head over to port 3579 and follow the setup to create an ombi admin account. From there
+head over to settings and click TV and then Sonarr. enter your host IP, localhost and port 8989.
+Grab the sonarr API key from the Sonarr settings and enter it in the API Key input. You can now select your default quality profiles and the folders you want the files to be downloaded to. Repeat the same steps in Media Server for plex, and Movies for Radarr.
+
+### Setup Organizr
+
+Head over to port 80 and you'll be greeted by the following:
+![organizr](img/organizr_start.png)
+Next you'll want to create an username and password similar to Ombi.
+![organizr](img/organizr_signup.png)
+Once you're done with the sign up and you're on the main page, click tab editor. From here click the small plus icon to add a new tab.
+![organizr](img/organizr_tab_creation.png)
+Fill out the details with the corresponding ports and click add tab. Once the tab has been added, you'll want to enable it.
+![organizr](img/organizr_tabs.png)
+
+Congrats! You now have a single webpage with all the tabs consolidated and available in iframes.
+![organizr](img/organizr_complete.png)
+
 ## Going Further
 
 Some stuff worth looking at that I do not use at the moment:
 
 - [NZBHydra](https://github.com/theotherp/nzbhydra): meta search for NZB indexers (like [Jackett](https://github.com/Jackett/Jackett) does for torrents). Could simplify and centralise nzb indexers configuration at a single place.
-- [Organizr](https://github.com/causefx/Organizr): Embed all these services in a single webpage with tab-based navigation
 - [Plex sharing features](https://www.plex.tv/features/#feat-modal)
 - [Headphones](https://github.com/rembo10/headphones): Automated music download. Like Sonarr but for music albums. I've been using it for a while, but it did not give me satisfying results. I also tend to rely entirely on a Spotify premium account to manage my music collection now.
 - [Mylar](https://github.com/evilhero/mylar): like Sonarr, but for comic books.
-- [Ombi](http://www.ombi.io/): Web UI to give your shared Plex instance users the ability to request new content
 - [PlexPy](https://github.com/JonnyWong16/plexpy): Monitoring interface for Plex. Useful is you share your Plex server to multiple users.
 - Radarr lists automated downloads, to fetch best movies automatically. [Rotten Tomatoes certified movies](https://www.rottentomatoes.com/browse/cf-in-theaters/) would be a nice list to parse and get automatically.
