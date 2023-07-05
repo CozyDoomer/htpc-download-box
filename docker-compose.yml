@@ -89,6 +89,46 @@ services:
       - ${ROOT}/complete/movies:/movies # movies folder
       - ${ROOT}/downloads:/downloads # download folder
 
+  readarr:
+    container_name: readarr
+    restart: unless-stopped
+    network_mode: host
+    image: lscr.io/linuxserver/readarr:develop
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${ROOT}/config/readarr:/config # config files
+      - ${ROOT}/complete/books:/books # books folder
+      - ${ROOT}/downloads:/downloads # download folder
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${ROOT}/config/prowlarr:/config # config files
+
+  openbooks:
+    ports:
+      - '8080:80'
+    volumes:
+      - ${ROOT}/complete/books:/books
+    restart: unless-stopped
+    container_name: openbooks
+    command: --name cozy --persist
+    environment:
+      - BASE_PATH=/openbooks/
+    image: evanbuss/openbooks:latest
+
   plex-server:
     container_name: plex-server
     image: linuxserver/plex:latest
